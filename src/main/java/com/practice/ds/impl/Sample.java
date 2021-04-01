@@ -30,6 +30,9 @@ public class Sample {
         int[] arr = {13, 7, 6, 45, 21, 9, 101, 102};
         Arrays.sort(arr);
 
+        //null character
+        arr[0] = (int) 0;
+
         Arrays.copyOfRange(arr, 1, arr.length-1);
 
         String s  = new String("manas");
