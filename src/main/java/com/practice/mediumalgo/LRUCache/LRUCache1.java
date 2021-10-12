@@ -12,7 +12,7 @@ class LRUCache1 extends LinkedHashMap<Integer, Integer> {
     }
 
     public int get(int key) {
-        return super.getOrDefault(key, -1);
+        return super.getOrDefault(key, null);
     }
 
     public void put(int key, int value) {

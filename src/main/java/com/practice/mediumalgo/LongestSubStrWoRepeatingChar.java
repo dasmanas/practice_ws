@@ -5,21 +5,21 @@ import java.util.Set;
 
 public class LongestSubStrWoRepeatingChar {
 
-    public int lengthOfLongestSubStr(String s){
+    public int lengthOfLongestSubStr(String s) {
         int windowStart = 0;
         int windowEnd = 0;
         int max = 0;
         Set<Character> charSet = new HashSet<Character>();
 
-        while(windowEnd < s.length()){
+        while (windowEnd < s.length()) {
             Character ch = s.charAt(windowEnd);
-            if(!charSet.contains(ch)){
+            if (!charSet.contains(ch)) {
                 charSet.add(ch);
-                windowEnd ++;
+                windowEnd++;
                 max = Math.max(charSet.size(), max);
-            }else {
+            } else {
                 charSet.remove(s.charAt(windowStart));
-                windowStart ++;
+                windowStart++;
             }
             System.out.printf("windowStart: %d%n", windowStart);
             System.out.printf("windowEnd: %d%n", windowEnd);
