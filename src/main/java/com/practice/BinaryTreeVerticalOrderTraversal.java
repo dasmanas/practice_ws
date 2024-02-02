@@ -2,8 +2,11 @@ package com.practice;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+
+/**
+ * It ia a DP based solution
+ */
 public class BinaryTreeVerticalOrderTraversal {
 
     class TreeNode {
@@ -34,16 +37,14 @@ public class BinaryTreeVerticalOrderTraversal {
 
         List<List<Integer>> result = new ArrayList<>();
 
+        dfs(root,0,0);
 
-        Stream<Map.Entry<Integer, Map<Integer, List<Integer>>>> sorted = tableMap.entrySet().stream().sorted((o1, o2) -> Integer.compare(o1.getKey(), o2.getKey()));
-        sorted.flatMap(e -> e.getValue().)
+        List<Map.Entry<Integer, Map<Integer, List<Integer>>>> collect = tableMap.entrySet().stream().sorted((o1, o2) -> Integer.compare(o1.getKey(), o2.getKey())).collect(Collectors.toList());
 
-        for (Map.Entry<Integer, Map<Integer, List<Integer>>> entry : tableMap.entrySet()) {
-            Map<Integer, List<Integer>> rowMap = entry.getValue();
-
+        for (Map.Entry<Integer, Map<Integer, List<Integer>>> elem  : collect ) {
+            Map<Integer, List<Integer>> rowMap = elem.getValue();
             List<Integer> collectedRowValues = rowMap.entrySet().stream().sorted((o1, o2) -> Integer.compare(o1.getKey(), o2.getKey()))
                     .flatMap(e -> e.getValue().stream()).collect(Collectors.toList());
-
             result.add(collectedRowValues);
         }
         return result;
@@ -69,7 +70,7 @@ public class BinaryTreeVerticalOrderTraversal {
 
     }
 
-    public TreeNode setupTree() {
+    TreeNode setupTree() {
 
         TreeNode root = new TreeNode(3);
         root.left = new TreeNode(9);
