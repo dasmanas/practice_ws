@@ -5,7 +5,8 @@ import java.util.stream.Collectors;
 
 
 /**
- * It ia a DP based solution
+ * Binary Tree Vertical Order Traversal
+ * Solved using a DFS based solution
  */
 public class BinaryTreeVerticalOrderTraversal {
 
