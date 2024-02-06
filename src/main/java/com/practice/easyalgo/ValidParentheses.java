@@ -1,41 +1,37 @@
 package com.practice.easyalgo;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 
 public class ValidParentheses {
     public static void main(String args[]){
-
         String a = "{[[]{}]}";
+        ValidParentheses sol = new ValidParentheses();
+        System.out.printf("%b\n", sol.isValid("{[[]{}]}"));
+        System.out.printf("%b\n", sol.isValid("()[]{}"));
+        System.out.printf("%b\n", sol.isValid("(]"));
+        System.out.printf("%b\n", sol.isValid("]"));
+        System.out.printf("%b\n", sol.isValid(""));
+
+
+    }
+
+    public boolean isValid(String s) {
+        if(s==null) return true;
         Stack<Character> stack = new Stack<>();
+        Map<Character, Character> braces = new HashMap()
+        {{
+            put(')', '(');
+            put('}', '{');
+            put(']', '[');
+        }};
 
-        Set<Character> left = new HashSet<>();
-        Set<Character> right = new HashSet<>();
-
-        left.add('(');
-        left.add('{');
-        left.add('[');
-
-        right.add(')');
-        right.add('}');
-        right.add(']');
-
-        char[] braces = a.toCharArray();
-        int len = braces.length;
-        for (int i = 0; i < len; i++) {
-            char ch = braces[i];
-            if (left.contains(ch)) {
+        for(char ch : s.toCharArray()){
+            if (braces.containsKey(ch)){
+                if(stack.isEmpty() || !stack.pop().equals(braces.get(ch))) return false;
+            } else {
                 stack.push(ch);
-            } else if (right.contains(ch) && stack.pop()=='a'){
-
-            } else{
-
             }
         }
-
-
-
-
+        return stack.isEmpty();
     }
 }
